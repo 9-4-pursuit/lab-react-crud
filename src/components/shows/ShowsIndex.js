@@ -1,13 +1,30 @@
 import { Link } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import ErrorMessage from "../errors/ErrorMessage";
+import { getAllShows } from "../../api/fetch";
 
 import "./ShowsIndex.css";
+import ShowListing from "./ShowListing";
 
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false);
+  const [shows, setShows] = useState([]);
+  // we want useEffect to render everything on firstload -- add setShows for the response from api to set the shows on load.
+  useEffect(() => {
+    getAllShows()
+      .then((response) => {
+        setShows(response);
+        setLoadingError(false);
+      })
+      .catch((error) => {
+        setLoadingError(true);
+      });
+  }, []);
+
   return (
     <div>
-      {false ? (
+      {/* use the state variable to throw the error from your hook*/}
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
@@ -26,7 +43,9 @@ export default function ShowsIndex() {
             />
           </label>
           <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
+            {shows.map((show) =>{
+              return <ShowListing show={show} key={show.id}/>
+            })}
           </section>
         </section>
       )}
