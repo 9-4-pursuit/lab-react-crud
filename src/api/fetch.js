@@ -29,10 +29,28 @@ export function updateShow(id, show) {
 
 
 
-
-
 // Movies
 
+// Create
+export function createMovie(show) {
+  return;
+}
+
+// Delete
+export function destroyMovie(id) {
+  return;
+}
+
 export function getAllMovies() {
+  return fetch(`${URL}/movies`).then((response) => response.json())
+}
+
+// Show/Get one
+export function getOneMovie(id) {
+  return;
+}
+
+// Update
+export function updateMovie(id, show) {
   return;
 }
