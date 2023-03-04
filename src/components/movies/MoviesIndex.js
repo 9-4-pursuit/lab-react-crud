@@ -4,12 +4,12 @@ import ErrorMessage from "../errors/ErrorMessage";
 import { getAllMovies } from "../../api/fetch";
 
 import "./MoviesIndex.css";
-import ShowListing from "./ShowListing";
+import MovieListing from "./MovieListing";
 
 export default function MoviesIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [movies, setMovies] = useState([]);
-  // we want useEffect to render everything on firstload -- add setShows for the response from api to set the shows on load.
+  // we want useEffect to render everything on firstload -- add setMovies for the response from api to set the movies on load.
   useEffect(() => {
     getAllMovies()
       .then((response) => {
@@ -44,7 +44,7 @@ export default function MoviesIndex() {
           </label>
           <section className="movies-index">
             {movies.map((movie) =>{
-              return <ShowListing movie={movie} key={movie.id}/>
+              return <MovieListing movie={movie} key={movie.id}/>
             })}
           </section>
         </section>
