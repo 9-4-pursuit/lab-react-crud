@@ -23,9 +23,9 @@ export default function ShowsForm() {
     getOneShow(id).then((response) => {
       setShow(response);
     }).catch((error) => {
-      console.log(error)
+      console.log(error);
     })
-  }, [id])
+  }, [id]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -34,7 +34,6 @@ export default function ShowsForm() {
     }).catch((error) => {
       console.log(error);
     });
-
   }
 
   function handleTextChange(event) {
