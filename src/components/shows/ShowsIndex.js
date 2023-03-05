@@ -11,20 +11,38 @@ export default function ShowsIndex() {
   // Make 2 states for the error and the shows data, that will be returned by our page load fetch below
   const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([]);
+  const [allShows, setAllShows] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
 
   // On page load, call getAllShows to fetch our intial shows data
   // We then setShows state to the response, which will be the array of shows
   useEffect(() => {
     getAllShows().then((response) => {
-      setShows(response)
-      setLoadingError(false)
+      setShows(response);
+      setAllShows(response);
+      setLoadingError(false);
     }).catch((error) => {
       setLoadingError(true)
     })
   }, [])
 
-// If there is an error on our page load useEffect, loadingError state will be true, and therefore the code below will return our error.js component
-// If there isnt an error, the loadingError state will be false, and then the page will load
+  function handleTextChange(event) {
+    const title = event.target.value;
+    const result = title.length ? filterShows(title, allShows) : allShows
+
+    setSearchTitle(title);
+    setShows(result)
+    // console.log(title, searchTitle)
+  }
+
+  function filterShows(search, shows) {
+    return shows.filter((show) => {
+      return show.title.toLowerCase().match(search.toLowerCase());
+    })
+  }
+
+  // If there is an error on our page load useEffect, loadingError state will be true, and therefore the code below will return our error.js component
+  // If there isnt an error, the loadingError state will be false, and then the page will load
   return (
     <div>
       {loadingError ? (
@@ -40,9 +58,9 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-            // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
