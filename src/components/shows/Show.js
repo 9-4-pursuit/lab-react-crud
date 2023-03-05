@@ -3,9 +3,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
 
-import "./Show.css";
+import { requestData } from "../../api/fetch";
 
-import { getOneShow, destroyShow } from "../../api/fetch";
+import "./Show.css";
 
 function Show() {
   const [show, setShow] = useState({});
@@ -15,8 +15,8 @@ function Show() {
   const navigate = useNavigate();
 
   function handleDelete(id) {
-    destroyShow(id)
-    .then(() =>navigate("/shows"))
+    requestData('DELETE', 'shows', id)
+    .then(() => navigate("/shows"))
     .catch((err) => {
      console.log(err)
      setLoadingError(true)
@@ -24,13 +24,14 @@ function Show() {
   }
 
   useEffect(() => {
-   getOneShow(id)
+   requestData('GET', 'shows', id)
    .then((res) => {
     setShow(res);
     if(Object.keys(res).length === 0) setLoadingError(true);
     else setLoadingError(false);
    })
    .catch((err) => {
+    console.log(err);
     setLoadingError(true);
    });
   }, [id])

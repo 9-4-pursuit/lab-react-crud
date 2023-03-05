@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
 import ShowListing from "./ShowListing";
-import { getAllShows } from "../../api/fetch";
+
+import { filterItems, requestData } from "../../api/fetch";
 
 import "./ShowsIndex.css";
 
-const filterShows = (search, shows) => {
-  return shows.filter((show) => {
-    return show.title.toLowerCase().match(search.toLowerCase());
-  })
-}
+// const filterShows = (search, shows) => {
+//   return shows.filter((show) => {
+//     return show.title.toLowerCase().match(search.toLowerCase());
+//   })
+// }
 
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
@@ -21,13 +22,13 @@ export default function ShowsIndex() {
 
   const handleTextChange = (e) => {
     const title = e.target.value;
-    const result = title.length ? filterShows(title, allShows) : allShows;
+    const result = title.length ? filterItems(title, allShows) : allShows;
     setSearchTitle(title);
     setShows(result)
   }
 
   useEffect(() => {
-    getAllShows()
+    requestData('GET', 'shows')
       .then((response) => {
         setAllShows(response)
         setShows(response);
@@ -38,6 +39,7 @@ export default function ShowsIndex() {
         setLoadingError(true);
       });
   }, []);
+
 
   return (
     <div>
