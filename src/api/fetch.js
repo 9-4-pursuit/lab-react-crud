@@ -33,11 +33,11 @@ export function updateShow(id, show) {
 
 // Movies
 
-export function createMovie() {
+export function createMovie(movie) {
   return;
 }
 
-export function destroyMovie() {
+export function destroyMovie(id) {
   return;
 }
 
@@ -46,10 +46,10 @@ export function getAllMovies() {
   .then((response) => response.json());
 }
 
-export function getOneMovie() {
+export function getOneMovie(id) {
   return;
 }
 
-export function updateMovie() {
+export function updateMovie(id, show) {
   return;
 }
