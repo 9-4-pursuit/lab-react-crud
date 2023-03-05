@@ -10,18 +10,19 @@ function Show() {
   const [show, setShow] = useState({});
   const [loadingError, setLoadingError] = useState(false);
 
-  const { id } = useParams();
+  const { type, id } = useParams();
   let navigate = useNavigate();
 
-  function handleDelete(id){
-    destroyShow(id).then(() => navigate("/shows")).catch((error) => {
+  function handleDelete(type, id){
+    destroyShow(type, id).then(() => navigate(`/${type}`)).catch((error) => {
       console.log(error);
       setLoadingError(true);
     })
   }
 
   useEffect(() => {
-    getOneShow(id).then((response) => {
+    console.log(type, id);
+    getOneShow(type, id).then((response) => {
       setShow(response)
       if (Object.keys(response).length === 0) {
         setLoadingError(true);
@@ -29,7 +30,7 @@ function Show() {
         setLoadingError(false);
       }
     }).catch((error) => setLoadingError(true))
-  }, [])
+  }, [type])
 
   return (
     <section className="shows-show-wrapper">
@@ -60,10 +61,10 @@ function Show() {
               <p>{show.description}</p>
             </article>
             <aside>
-              <button className="delete" onClick={() => handleDelete(show.id)}>
+              <button className="delete" onClick={() => handleDelete(type, show.id)}>
                 Remove show
               </button>
-              <Link to={`/shows/${id}/edit`}>
+              <Link to={`/${type}/${id}/edit`}>
                 <button>Edit</button>
               </Link>
             </aside>

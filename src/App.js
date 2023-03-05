@@ -16,10 +16,10 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shows" element={<ShowsIndex />} />
-          <Route path="/shows/new" element={<ShowsNewForm />} />
-          <Route path="/shows/:id" element={<Show />} />
-          <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
+          <Route path="/:type" element={<ShowsIndex />} />
+          <Route path="/:type/new" element={<ShowsNewForm />} />
+          <Route path="/:type/:id" element={<Show />} />
+          <Route path="/:type/:id/edit" element={<ShowsEditForm />} />
 
           {/* <Route path="/movies" element={<MoviesIndex />} />
           <Route path="/movies/new" element={<MoviesNewForm />} />

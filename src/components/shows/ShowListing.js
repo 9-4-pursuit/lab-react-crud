@@ -1,11 +1,14 @@
-import {Link} from 'react-router-dom'
+import {Link, useParams } from 'react-router-dom'
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
+
+  const {type} = useParams();
+
   return (
     <article className="show">
       <h3 className="title">
-        <Link to={`/shows/${show.id}`}>{show.title}</Link>
+        <Link to={`/${type}/${show.id}`}>{show.title}</Link>
       </h3>
       <p className="description">{show.description}</p>
       <aside className="details">

@@ -3,41 +3,43 @@ const URL = process.env.REACT_APP_API_BASE_URL
 
 
 // Create
-export function createShow(show) {
+export function createShow(type, show) {
+  console.log(type);
+  
   const options = {
     method: "POST",
     body: JSON.stringify(show),
     headers: { "Content-Type": "application/json" }
   }
-  return fetch(`${URL}/shows/`, options).then((response) => {
+  return fetch(`${URL}/${type}/`, options).then((response) => {
     return response.json();
   });
 }
 
 // Delete
-export function destroyShow(id) {
+export function destroyShow(type, id) {
   const options = { method: "DELETE" }
-  return fetch(`${URL}/shows/${id}`, options);
+  return fetch(`${URL}/${type}/${id}`, options);
 }
 
 // Index/Get all
-export function getAllShows() {
-  return fetch(`${URL}/shows`).then((response) => response.json());
+export function getAllShows(type) {
+  return fetch(`${URL}/${type}`).then((response) => response.json());
 }
 
 // Show/Get one
-export function getOneShow(id) {
-  return fetch(`${URL}/shows/${id}`).then((response) => response.json());
+export function getOneShow(type, id) {
+  return fetch(`${URL}/${type}/${id}`).then((response) => response.json());
 }
 
 // Update
-export function updateShow(id, show) {
+export function updateShow(type, id, show) {
   const options = {
     method: "PUT",
     body: JSON.stringify(show),
     headers: { "Content-Type": "application/json" },
   }
-  return fetch(`${URL}/shows/${id}`, options).then((response) => response.json())
+  return fetch(`${URL}/${type}/${id}`, options).then((response) => response.json())
 }
 
 
