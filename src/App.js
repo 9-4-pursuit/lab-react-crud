@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
-import Show from "./components/shows/Show";
-import ShowsEditForm from "./components/shows/ShowsEditForm";
-import ShowsIndex from "./components/shows/ShowsIndex";
-import ShowsNewForm from "./components/shows/ShowsNewForm";
+import Media from "./components/medias/Media";
+import MediasEditForm from "./components/medias/MediasEditForm";
+import MediasIndex from "./components/medias/MediasIndex";
+import MediasNewForm from "./components/medias/MediasNewForm";
 
 function App() {
   return (
@@ -16,10 +16,10 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:type" element={<ShowsIndex />} />
-          <Route path="/:type/new" element={<ShowsNewForm />} />
-          <Route path="/:type/:id" element={<Show />} />
-          <Route path="/:type/:id/edit" element={<ShowsEditForm />} />
+          <Route path="/:type" element={<MediasIndex />} />
+          <Route path="/:type/new" element={<MediasNewForm />} />
+          <Route path="/:type/:id" element={<Media />} />
+          <Route path="/:type/:id/edit" element={<MediasEditForm />} />
 
           {/* <Route path="/movies" element={<MoviesIndex />} />
           <Route path="/movies/new" element={<MoviesNewForm />} />

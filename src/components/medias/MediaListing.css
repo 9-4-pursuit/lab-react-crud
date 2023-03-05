@@ -1,4 +1,4 @@
-.show {
+.media {
   border: 1px solid var(--primary);
   border-radius: 3px;
   color: var(--gray);
@@ -7,32 +7,32 @@
   padding: 10px 25px;
 }
 
-.show a {
+.media a {
   border-bottom: 1px solid var(--primary);
   color: var(--primary);
   text-decoration: none;
 }
 
-.show .title {
+.media .title {
   text-decoration: none;
   font-variant: small-caps;
   margin-bottom: 0;
 }
 
-.show .description {
+.media .description {
   font-size: 14px;
 }
 
-.show .details {
+.media .details {
   border-top: 1px solid var(--primary);
   padding-top: 10px;
 }
 
-.show .details p {
+.media .details p {
   font-size: 12px;
   margin: 0 0 5px;
 }
 
-.show .details span {
+.media .details span {
   font-weight: bold;
 }

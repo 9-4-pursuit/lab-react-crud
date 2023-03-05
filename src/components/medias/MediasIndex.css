@@ -1,16 +1,16 @@
-.shows-index-wrapper {
+.medias-index-wrapper {
   margin: 0 auto;
   width: 70%;
 }
 
-.shows-index-wrapper label {
+.medias-index-wrapper label {
   display: block;
   width: 50%;
   margin: auto;
   text-align: center;
 }
 
-.shows-index {
+.medias-index {
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(2, 1fr);
@@ -26,16 +26,16 @@ button a {
 }
 
 @media screen and (max-width: 1000px) {
-  .shows-index-wrapper {
+  .medias-index-wrapper {
     width: 90%;
   }
-  .shows-index {
+  .medias-index {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 800px) {
-  .shows-index {
+  .medias-index {
     grid-template-columns: 1fr;
   }
 }
