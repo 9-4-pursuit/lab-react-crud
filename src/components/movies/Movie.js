@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { getOneMovie, destroyMovie } from "../../api/fetch"
 
 import "./Movie.css";
 
@@ -10,12 +11,32 @@ function Movie() {
   const [loadingError, setLoadingError] = useState(false);
 
   const { id } = useParams();
+  let navigate = useNavigate();
 
-  function handleDelete() {}
+  function handleDelete() {
+    destroyMovie(id).then((response) => navigate("/movies")).catch((error) => {
+      console.log(error)
+      setLoadingError(true)
+    })
+  }
+
+  useEffect(() => {
+    console.log(id)
+    getOneMovie(id).then((response) => {
+      setMovie(response)
+    if (Object.keys(response).length === 0) {
+      setLoadingError(true)
+    } else
+      setLoadingError(false)
+    }).catch((error) => {
+      setLoadingError(true)
+    })
+  },  [id])
+
 
   return (
     <section className="movies-movie-wrapper">
-      <h2>{Movie.title}</h2>
+      <h2>{movie.title}</h2>
       <section className="movies-movie">
         {loadingError ? (
           <ErrorMessage />
@@ -43,9 +64,9 @@ function Movie() {
             </article>
             <aside>
               <button className="delete" onClick={() => handleDelete(movie.id)}>
-                Remove Movie
+                Remove movie
               </button>
-              <Link to={`/Movies/${id}/edit`}>
+              <Link to={`/movies/${id}/edit`}>
                 <button>Edit</button>
               </Link>
             </aside>
