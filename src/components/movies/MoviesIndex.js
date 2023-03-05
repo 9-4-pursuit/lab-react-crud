@@ -9,14 +9,30 @@ import "../errors/ErrorMessage.css"
 
 import { getAllMovies } from "../../api/fetch";
 
-export default function ShowsIndex() {
+const filterMovies = (search, movies) => {
+  return movies.filter((movie) => {
+    return movie.title.toLowerCase().includes(search.toLowerCase());
+  })
+}
+
+export default function MoviesIndex() {
   
   const [loadingError, setLoadingError] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  const handleTextChange = (e) => {
+    const title = e.target.value;
+    const result = title.length ? filterMovies(title, allMovies) : allMovies;
+    setSearchTitle(title);
+    setMovies(result);
+  }
 
   useEffect(() => {
     getAllMovies()
     .then((res) => {
+      setAllMovies(res)
         setMovies(res);
         setLoadingError(false);
       })
@@ -41,9 +57,9 @@ export default function ShowsIndex() {
             Search Movies:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
 

@@ -6,9 +6,10 @@ export function createShow(show) {
   return;
 }
 
-// Delete
+// Delete one show
 export function destroyShow(id) {
-  return;
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/shows/${id}`, options);
 }
 
 // Index/Get all
@@ -18,7 +19,7 @@ export function getAllShows() {
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then(res => res.json());
 }
 
 // Update
@@ -31,3 +32,20 @@ export function updateShow(id, show) {
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((res) => res.json());
 }
+
+// Movie/Get one
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then(res => res.json());
+}
+
+// Delete one movie
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}
+
+// export const filterShows = (search, shows) => {
+//   return shows.filter((show) => {
+//     return show.title.toLowerCase().match(search.toLowerCase());
+//   })
+// }
