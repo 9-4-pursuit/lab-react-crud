@@ -96,34 +96,3 @@ export const filterItems = (search, items) => {
 
 
 
-// Movies
-//create
-// export function createMovie(movie) {
-//   const options = {
-//     method: "POST",
-//     body: JSON.stringify(movie),
-//     headers: { "Content-Type": "application/json" },
-//   };
-//   return fetch(`${URL}/movies/`, options).then((res) => res.json())
-// }
-
-// export function getAllMovies() {
-//   return fetch(`${URL}/movies`).then((res) => res.json());
-// }
-
-// // Movie/Get one
-// export function getOneMovie(id) {
-//   return fetch(`${URL}/movies/${id}`).then(res => res.json());
-// }
-
-// // Delete one movie
-// export function destroyMovie(id) {
-//   const options = { method: "DELETE" };
-//   return fetch(`${URL}/movies/${id}`, options);
-// }
-
-// // export const filterShows = (search, shows) => {
-// //   return shows.filter((show) => {
-// //     return show.title.toLowerCase().match(search.toLowerCase());
-// //   })
-// // }

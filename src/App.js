@@ -1,17 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Components
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
 import Show from "./components/shows/Show";
-import ShowsEditForm from "./components/shows/ShowsEditForm";
 import ShowsIndex from "./components/shows/ShowsIndex";
-import ShowsNewForm from "./components/shows/ShowsNewForm";
-import MoviesIndex from "./components/movies/MoviesIndex"
-import Movie from "./components/movies/Movie";
-import MoviesNewForm from "./components/movies/MoviesNewForm";
-import MoviesEditForm from "./components/movies/MoviesEditForm";
+import ShowsForm from "./components/shows/ShowsForm";
+// import MoviesIndex from "./components/movies/MoviesIndex"
+// import Movie from "./components/movies/Movie";
+// import MoviesNewForm from "./components/movies/MoviesNewForm";
+// import MoviesEditForm from "./components/movies/MoviesEditForm";
 
 function App() {
   return (
@@ -21,17 +19,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          {/* This route will show all of the shows */}
           <Route path="/shows" element={<ShowsIndex />} />
-          <Route path="/shows/new" element={<ShowsNewForm />} />
 
-          {/* This route below will allow us to send the id of a movie to the url address, from which we can use useParams in the component where we want to retrieve the id */}
+          <Route path="/shows/new" element={<ShowsForm />} />
+
           <Route path="/shows/:id" element={<Show />} />
-          <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
-          {/* <Route path="/movies" element={<MoviesIndex />} />
-          <Route path="/movies/new" element={<MoviesNewForm />} />
-          <Route path="/movies/:id" element={<Movie />} />
-          <Route path="/movies/:id/edit" element={<MoviesEditForm />} /> */}
+
+          <Route path="/shows/:id/edit" element={<ShowsForm />} />
+        
         </Routes>
         <Footer />
       </Router>
