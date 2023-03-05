@@ -1,5 +1,6 @@
 // Shows
-
+const URL = process.env.REACT_APP_API_BASE_URL;
+// console.log(process.env);
 // Create
 export function createShow(show) {
   return;
@@ -12,7 +13,7 @@ export function destroyShow(id) {
 
 // Index/Get all
 export function getAllShows() {
-  return;
+  return fetch(`${URL}/shows`).then((response) => response.json());
 }
 
 // Show/Get one
@@ -28,5 +29,5 @@ export function updateShow(id, show) {
 // Movies
 
 export function getAllMovies() {
-  return;
+  return fetch(`${URL}/movies`).then((res) => res.json());
 }
