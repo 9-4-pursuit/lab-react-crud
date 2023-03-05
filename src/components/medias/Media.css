@@ -1,9 +1,9 @@
-.shows-show-wrapper {
+.medias-media-wrapper {
   margin: 0 auto;
   width: 70%;
 }
 
-.shows-show {
+.medias-media {
   border: 1px solid var(--primary);
   border-radius: 3px;
   color: var(--gray);
@@ -11,16 +11,16 @@
   grid-template-rows: auto 1fr auto;
 }
 
-.shows-show article {
+.medias-media article {
   padding: 10px 25px;
 }
 
-.shows-show aside {
+.medias-media aside {
   background: var(--primary);
   color: var(--light);
 }
 
-.shows-show aside p {
+.medias-media aside p {
   display: inline-block;
   font-size: 14px;
   margin: 10px 25px;
@@ -28,11 +28,11 @@
   width: auto;
 }
 
-.shows-show aside span {
+.medias-media aside span {
   font-weight: bold;
 }
 
-.shows-show aside button {
+.medias-media aside button {
   background: none;
   border: none;
   color: var(--light);
@@ -41,6 +41,6 @@
   text-decoration: underline;
 }
 
-.shows-show aside button:hover {
+.medias-media aside button:hover {
   text-decoration: none;
 }
