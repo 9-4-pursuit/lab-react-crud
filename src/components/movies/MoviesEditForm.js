@@ -1,4 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateMovie } from "../../api/fetch";
+import "./MoviesForm.css"
+
+import { getOneMovie } from "../../api/fetch";
+
+
 
 export default function MoviesEditForm() {
     
@@ -15,8 +22,34 @@ export default function MoviesEditForm() {
         rating: "",
         releaseYear: "",
       });
+
+      let navigate = useNavigate()
+      const {id} = useParams()
+
+      useEffect(() => {
+        getOneMovie(id).then((response) => {
+          setMovie(response)
     
-      function handleSubmit(event) {}
+        }).catch((error) => {
+          console.log(error)
+        })
+      }, [id])
+
+
+
+
+    
+      function handleSubmit(event) {
+        event.preventDefault()
+
+        updateMovie(id, movie).then(() => {
+
+          navigate(`/movies/${id}`)
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
+
     
       function handleTextChange(event) {
         setMovie({

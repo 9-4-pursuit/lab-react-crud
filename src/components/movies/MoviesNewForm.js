@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createMovie } from "../../api/fetch";
+
+import "./MoviesForm.css";
 
 
-export default function MoviesNewForm() {
-    const [movies, setMovies] = useState({
+
+export default function MoviesForm() {
+    const [movie, setMovie] = useState({
         type: "",
         title: "",
         country: "",
@@ -14,14 +19,25 @@ export default function MoviesNewForm() {
         releaseYear: "",
       })
 
+      let navigate = useNavigate()
+
+     function handleSubmit(e) {
+      e.preventDefault()
+      // console.log(show)
+      createMovie(movie).then((response) => {
+        // console.log(response)
+        navigate(`/movies/${response.id}`)
+      }).catch((error) => {
+        console.log(error)
+      })
+     }
 
 
 
-    function handleSubmit(event) {}
 
     function handleTextChange(event) {
-      setMovies({
-        ...movies,
+      setMovie({
+        ...movie,
         [event.target.id]: event.target.value,
       });
     }
@@ -32,7 +48,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="title"
-        value={movies.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -40,7 +56,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="description"
-        value={movies.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
@@ -48,7 +64,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="type"
-        value={movies.type}
+        value={movie.type}
         onChange={handleTextChange}
       />
 
@@ -56,7 +72,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="rating"
-        value={movies.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -64,7 +80,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="listedIn"
-        value={movies.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
@@ -72,7 +88,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="duration"
-        value={movies.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
@@ -80,7 +96,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="releaseYear"
-        value={movies.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -88,7 +104,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="country"
-        value={movies.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -96,7 +112,7 @@ export default function MoviesNewForm() {
       <input
         type="text"
         id="dateAdded"
-        value={movies.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 

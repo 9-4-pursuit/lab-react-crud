@@ -1,19 +1,41 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom"
 import ErrorMessage from "../errors/ErrorMessage";
 import "./Movie.css"
+import { getOneMovie, destroyMovie } from "../../api/fetch";
 
 
 
 export default function Movie() {
 
-    const [movie, Setmovie] = useState({});
+    const [movie, setMovie] = useState({});
     const [loadingError, setLoadingError] = useState(false);
     
   
     const { id } = useParams();
+    let navigate = useNavigate()
   
-    function handleDelete() {}
+    function handleDelete() {
+      destroyMovie(id).then(() => navigate('/movies')).catch((error) => {
+        setLoadingError(true)
+      })
+
+    }
+
+    useEffect(() => {
+      // console.log(id)
+      getOneMovie(id).then((response) => {
+        setMovie(response)
+
+        if (Object.keys(response).length === 0) {
+          setLoadingError(true)
+        } else {
+          setLoadingError(false)
+        }
+      }).catch((error) => {
+        setLoadingError(true)
+      })
+    }, [id])
 
     return (
         <section className="movies-movie-wrapper">

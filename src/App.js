@@ -10,7 +10,6 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 
 import MoviesIndex from "./components/movies/MoviesIndex";
-import MovieListing from "./components/movies/MovieListing";
 import MoviesEditForm from "./components/movies/MoviesEditForm";
 import Movie from "./components/movies/Movie";
 import MoviesNewForm from "./components/movies/MoviesNewForm";
