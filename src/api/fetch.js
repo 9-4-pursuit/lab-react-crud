@@ -46,23 +46,39 @@ export function updateShow(id, show) {
 
 // Movies
 
+//Create
 export function createMovie(movie) {
-  return;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: {"Content-Type": "application/json"}
+  };
+  return fetch(`${URL}/movies/`).then((response) => response.json);
 }
 
+//Delete
 export function destroyMovie(id) {
-  return;
+  const options = {method: "DELETE"};
+  return fetch(`${URL}/movies/${id}`, options);
 }
 
+//Get All
 export function getAllMovies() {
   return fetch(`${URL}/movies`)
   .then((response) => response.json());
 }
 
+//Get One
 export function getOneMovie(id) {
-  return;
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
 }
 
-export function updateMovie(id, show) {
-  return;
+//Update
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: {"Content-Type": "application/json"}
+  };
+  return fetch(`${URL}/movies/${id}`, options).then((response) => response.json);
 }
