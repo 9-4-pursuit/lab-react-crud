@@ -53,7 +53,7 @@ export function createMovie(movie) {
     body: JSON.stringify(movie),
     headers: {"Content-Type": "application/json"}
   };
-  return fetch(`${URL}/movies/`).then((response) => response.json);
+  return fetch(`${URL}/movies/`, options).then((response) => response.json());
 }
 
 //Delete
