@@ -33,6 +33,23 @@ export function updateShow(id, show) {
 
 // Movies
 
+export function createMovie() {
+  return;
+}
+
+export function destroyMovie() {
+  return;
+}
+
 export function getAllMovies() {
+  return fetch(`${URL}/movies`)
+  .then((response) => response.json());
+}
+
+export function getOneMovie() {
+  return;
+}
+
+export function updateMovie() {
   return;
 }
