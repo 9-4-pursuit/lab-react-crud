@@ -8,17 +8,15 @@ export function createShow(show) {
     method: "POST",
     body: JSON.stringify(show),
     headers: {"Content-Type": "application/json"}
-  }
-  return fetch(`${URL}/shows/`, options).then((response) => {
-    return response.json();
-  });
+  };
+  return fetch(`${URL}/shows/`, options).then((response) => response.json());
 }
 
 // Delete
 export function destroyShow(id) {
   //pass in the method, DELETE, into the fetch
   // because fetch usually GETs
-  const options = { method: "DELETE"}
+  const options = { method: "DELETE"};
   return fetch(`${URL}/shows/${id}`, options);
 }
 
@@ -35,7 +33,12 @@ export function getOneShow(id) {
 
 // Update
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(show),
+    headers: {"Content-Type": "application/json"}
+  };
+  return fetch(`${URL}/shows/${id}`, options).then((response) => response.json);
 }
 
 
