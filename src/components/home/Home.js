@@ -1,7 +1,9 @@
 import hero from "../../assets/denise-jans-Lq6rcifGjOU-unsplash.jpg";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
+    <Link to='/'>
     <div>
       <img src={hero} alt="film" />
       <p>
@@ -15,5 +17,6 @@ export default function Home() {
         </a>
       </p>
     </div>
+    </Link>
   );
 }

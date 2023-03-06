@@ -15,6 +15,7 @@ export default function ShowListing({ show }) {
         </p>
         <p>
           <span>Duration:</span> {show.duration}
+          <p>{show.id}</p>
         </p>
       </aside>
     </article>
