@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { requestData } from "../../api/fetch";
 import "./ShowsForm.css";
 
-export default function ShowsForm() {
-  const [show, setShow] = useState({
+export default function Form({ method, id, navigate }) {
+const [show, setShow] = useState({
     type: "",
     title: "",
     country: "",
@@ -14,16 +16,25 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
-
-  function handleTextChange(event) {
-    setShow({
-      ...show,
-      [event.target.id]: event.target.value,
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    requestData(method, "shows", id, show)
+    .then((res) => navigate(`/shows/${res.id}`))
+    .catch ((err) => console.log(err));
   }
+   
+  const handleTextChange = (e) => {
+    setShow({
+        ...show,
+        [e.target.id]: e.target.value,
+    });
+  };
 
-  return (
+  useEffect(() => {
+    if(method === "PUT") requestData("GET", "shows", id).then((res) => setShow(res))
+  }, [id, method]);
+
+return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
       <input
@@ -102,4 +113,6 @@ export default function ShowsForm() {
       <input type="submit" />
     </form>
   );
+
 }
+

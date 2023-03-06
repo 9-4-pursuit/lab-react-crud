@@ -1,13 +1,43 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import ErrorMessage from "../errors/ErrorMessage";
+import ShowListing from "./ShowListing";
+
+import { filterItems, requestData } from "../../api/fetch";
 
 import "./ShowsIndex.css";
 
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false);
+  const [shows, setShows] = useState([]);
+  const [allShows, setAllShows] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  const handleTextChange = (e) => {
+    const title = e.target.value;
+    const result = title.length ? filterItems(title, allShows) : allShows;
+    setSearchTitle(title);
+    setShows(result)
+  }
+
+  useEffect(() => {
+    requestData('GET', 'shows')
+      .then((response) => {
+        setAllShows(response)
+        setShows(response);
+        setLoadingError(false);
+      })
+      .catch((error) => {
+        console.log(error)
+        setLoadingError(true);
+      });
+  }, []);
+
+
   return (
     <div>
-      {false ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
@@ -20,13 +50,16 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
+
           <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
+            {shows.map((show) => {
+              return <ShowListing {...show} key={show.id} />;
+            })}
           </section>
         </section>
       )}

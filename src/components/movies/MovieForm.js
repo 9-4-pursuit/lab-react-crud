@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import "./ShowsForm.css";
+import { requestData } from "../../api/fetch";
+import "../shows/ShowsForm.css";
 
-export default function ShowsForm() {
-  const [show, setShow] = useState({
+export default function MovieForm({ method, id, navigate }) {
+const [movie, setMovie] = useState({
     type: "",
     title: "",
     country: "",
@@ -15,22 +16,31 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
-
-  function handleTextChange(event) {
-    setShow({
-      ...show,
-      [event.target.id]: event.target.value,
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    requestData(method, "movies", id, movie)
+    .then((res) => navigate(`/movies/${res.id}`))
+    .catch ((err) => console.log(err));
   }
+   
+  const handleTextChange = (e) => {
+    setMovie({
+        ...movie,
+        [e.target.id]: e.target.value,
+    });
+  };
 
-  return (
+  useEffect(() => {
+    if(method === "PUT") requestData("GET", "movies", id).then((res) => setMovie(res))
+  }, [id, method]);
+
+return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -38,7 +48,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
@@ -46,7 +56,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="type"
-        value={show.type}
+        value={movie.type}
         onChange={handleTextChange}
       />
 
@@ -54,7 +64,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -62,7 +72,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
@@ -70,7 +80,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
@@ -78,7 +88,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
@@ -86,7 +96,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -94,7 +104,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 
@@ -103,4 +113,5 @@ export default function ShowsForm() {
       <input type="submit" />
     </form>
   );
+
 }
