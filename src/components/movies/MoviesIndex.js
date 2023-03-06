@@ -51,7 +51,7 @@ export default function MoviesIndex() {
         <ErrorMessage />
       ) : (
         <section className="movies-index-wrapper">
-          <h2>All movies</h2>
+          <h2>All Movies</h2>
           <button>
             <Link to="/movies/new">Add a new movie</Link>
           </button>
