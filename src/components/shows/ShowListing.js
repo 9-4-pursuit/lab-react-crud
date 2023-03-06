@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "./ShowListing.css";
 
 export default function ShowListing({ show }) {
@@ -10,8 +10,7 @@ export default function ShowListing({ show }) {
       <p className="description">{show.description}</p>
       <aside className="details">
         <p>
-          <span>Listed Categories:</span>
-          {show.listedIn}
+          <span>Listed Categories:</span> {show.listedIn}
         </p>
         <p>
           <span>Duration:</span> {show.duration}
