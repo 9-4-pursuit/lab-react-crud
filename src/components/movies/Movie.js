@@ -28,6 +28,7 @@ function Movie() {
    .then((res) => {
     setMovie(res);
     if(Object.keys(res).length === 0) setLoadingError(true);
+    
     else setLoadingError(false);
    })
    .catch((err) => {

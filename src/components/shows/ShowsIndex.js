@@ -8,12 +8,6 @@ import { filterItems, requestData } from "../../api/fetch";
 
 import "./ShowsIndex.css";
 
-// const filterShows = (search, shows) => {
-//   return shows.filter((show) => {
-//     return show.title.toLowerCase().match(search.toLowerCase());
-//   })
-// }
-
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([]);
@@ -64,7 +58,7 @@ export default function ShowsIndex() {
 
           <section className="shows-index">
             {shows.map((show) => {
-              return <ShowListing show={show} key={show.id} />;
+              return <ShowListing {...show} key={show.id} />;
             })}
           </section>
         </section>
