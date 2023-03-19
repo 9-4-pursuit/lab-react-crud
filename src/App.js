@@ -10,6 +10,7 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
 import MoviesNewForm from "./components/movies/MoviesNewForm";
+import Movie from "./components/movies/Movie";
 
 function App() {
   return (
