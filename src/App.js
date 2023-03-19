@@ -11,7 +11,7 @@ import ShowsNewForm from "./components/shows/ShowsNewForm";
 import MoviesIndex from "./components/movies/MoviesIndex";
 import MoviesNewForm from "./components/movies/MoviesNewForm";
 import Movie from "./components/movies/Movie";
-
+import MoviesEditForm from "./components/movies/MoviesEditForm"
 function App() {
   return (
     <div className="wrapper">
