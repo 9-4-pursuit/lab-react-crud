@@ -1,35 +1,47 @@
-import { Link } from "react-router-dom";
-
-import ErrorMessage from "../errors/ErrorMessage";
-
-import "./ShowsIndex.css";
-
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import ErrorMessage from '../errors/ErrorMessage'
+import './ShowsIndex.css'
+import { getAllShows } from '../../api/fetch'
+import ShowListing from './ShowListing'
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false)
+  const [shows, setShows] = useState([])
+  useEffect(() => {
+    getAllShows()
+      .then(res => {
+        setShows(res)
+        setLoadingError(false)
+      })
+      .catch(err => setLoadingError(true))
+  }, [])
   return (
     <div>
-      {false ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
-        <section className="shows-index-wrapper">
+        <section className='shows-index-wrapper'>
           <h2>All Shows</h2>
           <button>
-            <Link to="/shows/new">Add a new show</Link>
+            <Link to='/shows/new'>Add a new show</Link>
           </button>
           <br />
-          <label htmlFor="searchTitle">
+          <label htmlFor='searchTitle'>
             Search Shows:
             <input
-              type="text"
+              type='text'
               // value={searchTitle}
-              id="searchTitle"
+              id='searchTitle'
               // onChange={handleTextChange}
             />
           </label>
-          <section className="shows-index">
-            {/* <!-- ShowListing components --> */}
+          <section className='shows-index'>
+            {shows.map(show => (
+              <ShowListing key={show.id} show={show} />
+            ))}
           </section>
         </section>
       )}
     </div>
-  );
+  )
 }
