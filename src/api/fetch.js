@@ -1,32 +1,72 @@
+const URL = process.env.REACT_APP_API_BASE_URL
 // Shows
 
 // Create
 export function createShow(show) {
-  return;
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(show),
+    headers: { 'Content-Type': 'application/json' },
+  }
+  return fetch(`${URL}/shows/`, options).then(res => res.json())
 }
 
 // Delete
 export function destroyShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`, { method: 'DELETE' }).then(res =>
+    res.json()
+  )
 }
 
 // Index/Get all
 export function getAllShows() {
-  return;
+  return fetch(`${URL}/shows`).then(res => res.json())
 }
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then(res => res.json())
 }
 
 // Update
 export function updateShow(id, show) {
-  return;
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(show),
+    headers: { 'Content-Type': 'applications/json' },
+  }
+  return fetch(`${URL}/shows/${id}/`, options).then(res => res.json())
 }
 
 // Movies
 
+export function createMovie(movie) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(movie),
+    headers: { 'Content-Type': 'application/json' },
+  }
+  return fetch(`${URL}/movies/`, options).then(res => res.json())
+}
+
+// Delete
+export function destroyMovie(id) {
+  return fetch(`${URL}/movies/${id}`, { method: 'DELETE' }).then(res =>
+    res.json()
+  )
+}
 export function getAllMovies() {
-  return;
+  return fetch(`${URL}/movies`).then(res => res.json())
+}
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then(res => res.json())
+}
+export function updateMovie(id, movie) {
+  console.log(movie)
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(movie),
+    headers: { 'Content-Type': 'applications/json' },
+  }
+  return fetch(`${URL}/movies/`, options).then(res => res.json())
 }
