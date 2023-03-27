@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// Components
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
@@ -15,16 +13,6 @@ import MoviesEditForm from "./components/movies/MoviesEditForm"
 
 function App() {
   return (
-
-    
-        
-          
-    
-
-        
-    
-    function App() {
-  
     <div className="wrapper">
       <Router>
         <Nav />
@@ -41,17 +29,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-
-    
-          
-            
-    
-
-          
-    
-    
-  
     </div>
-})
+  );
 }
 export default App;
